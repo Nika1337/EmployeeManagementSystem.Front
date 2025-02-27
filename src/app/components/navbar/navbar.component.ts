@@ -22,7 +22,7 @@ import { NgForOf, NgIf } from '@angular/common';
   ],
 })
 export class NavbarComponent implements OnInit {
-  username = 'John Doe';
+  username: string | null = null; // Set as null initially
   notifications: any[] = [];
   notificationDrawerOpened = false;
 

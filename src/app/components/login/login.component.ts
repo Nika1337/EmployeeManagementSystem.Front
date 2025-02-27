@@ -4,8 +4,7 @@ import { ApiService } from '../../services/api.service'; // Adjust path as neede
 import { Router } from '@angular/router';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
-import {NgIf} from '@angular/common';4
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,6 @@ import {NgIf} from '@angular/common';4
     MatFormField,
     ReactiveFormsModule,
     MatInput,
-    MatButton,
     NgIf,
     MatLabel
   ],
