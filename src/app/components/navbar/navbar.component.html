@@ -1,0 +1,32 @@
+<mat-toolbar class="navbar">
+  <span class="logo" routerLink="/">Portal</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="notification-icon" (click)="toggleNotifications()">
+    <mat-icon>notifications</mat-icon>
+    <span *ngIf="unreadNotificationsCount > 0" class="notification-badge">
+      {{ unreadNotificationsCount }}
+    </span>
+  </button>
+  <button mat-button class="username" (click)="navigateToProfile()">
+    <span>{{ username }}</span>
+  </button>
+</mat-toolbar>
+
+<div class="notification-sidebar" [class.open]="notificationDrawerOpened">
+  <div class="sidebar-header">
+    <h2>Notifications</h2>
+    <button class="close-btn" (click)="toggleNotifications()">×</button>
+  </div>
+  <ul class="notification-list">
+    <li *ngFor="let notification of notifications"
+        class="notification-item"
+        [class.read]="notification.isRead"
+        (click)="markAsRead(notification)">
+      <div class="notification-indicator" *ngIf="!notification.isRead"></div>
+      <div class="notification-content">
+        <div class="notification-title">{{ notification.title }}</div>
+        <div class="notification-text">{{ notification.text }}</div>
+      </div>
+    </li>
+  </ul>
+</div>

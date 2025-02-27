@@ -1,0 +1,48 @@
+.profile-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 16px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+h2 {
+  color: #6a1b9a;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* Ensure input text wraps if necessary */
+input[matInput] {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Button container: stack buttons vertically */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Save Changes button: green background with white text */
+.save-btn {
+  background-color: #4CAF50 !important; /* Green */
+  color: #fff !important;
+  width: 100%;
+}
+
+/* Logout button: white background with red text and red border */
+.logout-btn {
+  background-color: #fff !important;
+  color: #d32f2f !important;  /* Red text */
+  border: 1px solid #d32f2f;
+  width: 100%;
+}

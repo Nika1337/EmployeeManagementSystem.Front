@@ -1,0 +1,46 @@
+<div class="profile-container">
+  <h2>Profile</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <!-- Editable Fields -->
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Birth Date</mat-label>
+      <input matInput type="date" formControlName="birthDate" required />
+    </mat-form-field>
+
+    <!-- Read-Only Fields -->
+    <mat-form-field appearance="fill">
+      <mat-label>Position</mat-label>
+      <input matInput formControlName="position" [disabled]="true" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Department</mat-label>
+      <input matInput formControlName="department" [disabled]="true" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput formControlName="startDate" [disabled]="true" />
+    </mat-form-field>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button mat-raised-button class="save-btn" type="submit">
+        Save Changes
+      </button>
+      <button mat-raised-button class="logout-btn" type="button" (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </form>
+</div>
