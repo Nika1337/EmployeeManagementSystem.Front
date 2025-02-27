@@ -18,13 +18,11 @@ mat-form-field {
   margin-bottom: 16px;
 }
 
-/* Ensure input text wraps if necessary */
 input[matInput] {
   white-space: normal;
   overflow-wrap: break-word;
 }
 
-/* Button container: stack buttons vertically */
 .buttons {
   display: flex;
   flex-direction: column;
@@ -32,17 +30,15 @@ input[matInput] {
   margin-top: 24px;
 }
 
-/* Save Changes button: green background with white text */
 .save-btn {
-  background-color: #4CAF50 !important; /* Green */
+  background-color: #4CAF50 !important;
   color: #fff !important;
   width: 100%;
 }
 
-/* Logout button: white background with red text and red border */
 .logout-btn {
   background-color: #fff !important;
-  color: #d32f2f !important;  /* Red text */
+  color: #d32f2f !important;
   border: 1px solid #d32f2f;
   width: 100%;
 }

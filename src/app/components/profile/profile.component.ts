@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
-import {Router} from '@angular/router'; // Adjust the path as needed
+import { UserService, User } from '../../services/user.service';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -17,15 +18,19 @@ import {Router} from '@angular/router'; // Adjust the path as needed
     MatButton,
     MatLabel
   ],
-  // If using standalone components, include your imports here.
 })
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Initialize the form with empty/default values.
+    // Initialize form with default values.
     this.profileForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -35,13 +40,12 @@ export class ProfileComponent implements OnInit {
       startDate: [{ value: '', disabled: true }],
     });
 
-    // Fetch user data from the API
+    // Populate form with user data from API
     this.apiService.getUser().subscribe({
       next: (user: any) => {
         this.profileForm.patchValue({
           firstName: user.firstName,
           lastName: user.lastName,
-          // Convert UTC date string to a format suitable for the input (yyyy-MM-dd)
           birthDate: user.birthDateUtc ? user.birthDateUtc.substring(0, 10) : '',
           position: user.position,
           department: user.department,
@@ -56,17 +60,17 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void {
     if (this.profileForm.valid) {
-      // Build an object with only the fields the user can change
-      const updatedUser = {
+      const updatedUser: Partial<User> = {
         firstName: this.profileForm.value.firstName,
         lastName: this.profileForm.value.lastName,
-        // Assuming the API expects the birth date in the same format
         birthDateUtc: this.profileForm.value.birthDate,
       };
 
       this.apiService.updateUser(updatedUser).subscribe({
-        next: (result: any) => {
-          console.log('Profile updated:', result);
+        next: () => {
+          console.log('Profile updated');
+          this.userService.updateUser();
+          this.router.navigate(['/']);
         },
         error: (error: any) => {
           console.error('Error updating profile:', error);
@@ -82,5 +86,4 @@ export class ProfileComponent implements OnInit {
     console.log('User logged out');
     this.router.navigate(['/login']);
   }
-
 }

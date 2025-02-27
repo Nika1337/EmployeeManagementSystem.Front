@@ -1,7 +1,6 @@
 <div class="profile-container">
   <h2>Profile</h2>
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <!-- Editable Fields -->
     <mat-form-field appearance="fill">
       <mat-label>First Name</mat-label>
       <input matInput formControlName="firstName" required />
@@ -17,7 +16,6 @@
       <input matInput type="date" formControlName="birthDate" required />
     </mat-form-field>
 
-    <!-- Read-Only Fields -->
     <mat-form-field appearance="fill">
       <mat-label>Position</mat-label>
       <input matInput formControlName="position" [disabled]="true" />
@@ -33,7 +31,6 @@
       <input matInput formControlName="startDate" [disabled]="true" />
     </mat-form-field>
 
-    <!-- Buttons -->
     <div class="buttons">
       <button mat-raised-button class="save-btn" type="submit">
         Save Changes
