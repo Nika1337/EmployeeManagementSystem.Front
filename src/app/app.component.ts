@@ -1,13 +1,24 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {NavbarComponent} from './components/navbar/navbar.component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [
+    RouterOutlet,
+    NavbarComponent,
+    NgIf
+  ],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'employee-management-system-front';
+  showNavbar: boolean = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      this.showNavbar = this.router.url !== '/login';
+    });
+  }
 }
